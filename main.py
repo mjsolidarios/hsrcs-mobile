@@ -28,13 +28,16 @@ class ReportCardApp(App):
 	def dismiss_popup(self):
 		self._popup.dismiss()
 
+	#for file validation
 	def CheckFile():
 		return True
 
+	#yadd app settings here
 	def build(self):		
 		self.title = 'High School Report Card System'
 		return ReportCardForm()
 
+	#handles the open button
 	def OpenRecord(self):
 		msm = self.root.ids.MainScreenManager
 		wt = self.root.ids.WidgetTitle
@@ -46,7 +49,7 @@ class ReportCardApp(App):
 	def SaveRecord(self):
 		self.dismiss_popup()
 
-
+	#handles the dash
 	def DashButton(self):
 		msm = self.root.ids.MainScreenManager
 		wt = self.root.ids.WidgetTitle			
