@@ -1,10 +1,16 @@
+'''
+This project is still under development, and is intended for SBNCHS (Sta. Barbara Nat. Comp. High School), Iloilo, PH. 
+You'll be needing Kivy 1.8.0 to run this app.
+Cheers! If you want to contribute, please feel free to contact the developer. Thanks!
+markjoseph.solidarios@outlook.com
+'''
+
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
-
 
 import os
 
