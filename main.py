@@ -8,7 +8,6 @@ markjoseph.solidarios@outlook.com
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -31,6 +30,12 @@ class ReportCardForm(Widget):
 	pass
 
 class RecordView(Widget):
+	pass
+
+class StudBasicDetails(Widget):
+	pass
+	
+class GradingReportScreen(Widget):
 	pass
 
 class ReportCardApp(App):
@@ -64,12 +69,19 @@ class ReportCardApp(App):
 	def UpdateRecord(self):
 		pass
 
+	def SwitchToStudList(self):
+		msm = self.root.ids.MainScreenManager
+		wt = self.root.ids.WidgetTitle			
+		msm.current = 'studlist'
+		wt.text = '[font=data/fonts/OpenSans-Light.ttf]Select a Student[/font]'
+		msm.transition = SlideTransition()
+
 	def SwitchToEditor(self):
 		msm = self.root.ids.MainScreenManager
 		wt = self.root.ids.WidgetTitle			
 		msm.current = 'editor'
-		wt.text = '[font=data/fonts/OpenSans-Light.ttf]Record Editor[/font]'
-		msm.transition = SlideTransition()
+		wt.text = '[font=data/fonts/OpenSans-Light.ttf]Student Record Editor[/font]'
+		msm.transition = SlideTransition()		
 
 	#handles the dash
 	def SwitchToDash(self):

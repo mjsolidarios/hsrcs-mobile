@@ -1,6 +1,14 @@
 #:kivy 1.8.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
 
-<ToolBoxButton@ActionButton>:
+<ToolBoxButton@ToggleButton>:
+    background_normal: 'data/images/bg01.png'
+	size_hint: (None, None)
+	height: '48dp'
+	width: '48dp'
+
+<OpenSaveButton@ActionButton>:
+    background_normal: 'data/images/bg01.png'
 	size_hint: (None, None)
 	height: '48dp'
 	width: '48dp'
@@ -24,7 +32,7 @@
 	size_hint: None, 1
 	width: 30		
 
-<StudNameBtn@Button>:
+<StudNameButton@Button>:
 	size_hint: None, None
 	text_size: len(self.text)*10, None
 	halign: 'center'
@@ -34,7 +42,7 @@
 <ReportCardForm>:
 	canvas.before:
         Color:
-            rgba: 0.05, 0.05, 0.05, 1
+            rgba: get_color_from_hex('#24252A')
         Rectangle:
             size: self.size
             pos: self.pos
@@ -52,13 +60,13 @@
 	    		name: 'dashboard'    		
 				Label:					
 					size_hint: None, 1
-					text: ('[font=data/fonts/OpenSans-Light.ttf][size=40]Welcome to HSRCS[/size]\n[size=16]High School Report Card System\nfor Sta. Barbara National Comprehensive High School\n[size=12]© 2014 Mark Joseph J. Solidarios[/size]\n\n\nThis program comes with ABSOLUTELY NO WARRANTY;\n[size=12]for comments or suggestions, email: markjoseph.solidarios@outlook.com[/size] [/size][/font]')
+					text: ('[font=data/fonts/OpenSans-Light.ttf][size=40]Welcome to HSRCS[/size]\n[size=16]High School Report Card System\nfor Sta. Barbara National Comprehensive High School\n[size=12]© 2014 Mark Joseph J. Solidarios[/size]\n\n\nThis program comes with ABSOLUTELY NO WARRANTY:\n[size=12]for comments or suggestions, email: markjoseph.solidarios@outlook.com[/size] [/size][/font]')
 					pos_hint: {'x':.45, 'y':0.09}
 					markup:  True
 	    	Screen:	
 	    		name: 'help'
 	    		BoxLayout:
-	    			padding: [50,0,50,0]
+	    			padding: [70,0,70,0]
 	    			size_hint: 1, None
 	    			top: root.top - 62
 					Button:
@@ -71,9 +79,9 @@
 						size_hint: 1, None
 						text: 'sffsd'
 	    	Screen:	
-	    		name: 'editor'
+	    		name: 'studlist'
 	    		BoxLayout:
-	    			padding: [50,0,50,0]
+	    			padding: [70,0,70,0]
 	    			height: 30
 	    			top: root.top - 62
 	    			
@@ -84,23 +92,41 @@
 	    				text: 'Sort Z-A'
     			StackLayout:    				
     				size_hint: 1, 1
-    				padding: [50,0,50,0]
+    				padding: [70,0,70,0]
     				pos_hint: {'center_x': .5, 'center_y': 0.3}
     				spacing: 10
-    				StudNameBtn:
+    				StudNameButton:
+    					on_release: app.SwitchToEditor()
     					text: 'Juan De La Cruz'
-    				StudNameBtn:
+    				StudNameButton:
     					text: 'Juan De Lsdafasdfa Cruz'
-    				StudNameBtn:
+    				StudNameButton:
     					text: 'Juan Defasdf La Cruz' 
-    				StudNameBtn:
+    				StudNameButton:
     					text: 'Juan dsfasdfasdfadsfDe La Cruz' 
-    				StudNameBtn:
+    				StudNameButton:
     					text: 'Juan asdfsdDe La Cruz'  
-    				StudNameBtn:
+    				StudNameButton:
     					text: 'Juanadsfasdf De La Cruz'  
-    				StudNameBtn:
-    					text: 'Juan fdDe La Cruz'     					    					    					    					    											    						    					    						    						    						    						
+    				StudNameButton:
+    					text: 'Juan fdDe La Cruz' 
+	    	Screen:	
+	    		name: 'editor'
+	    		TabbedPanel:
+	    			tab_width: 150	    			
+    				padding: [70,0,70,0]
+	    			size_hint: 1, None
+	    			do_default_tab: False
+	    			height: self.parent.height - 100
+	    			pos_hint: {'center_x': .5, 'center_y': .47}
+	    			TabbedPanelItem:
+	    				text: 'Basic Details'  								    								    						    				    				
+	    				StudBasicDetails:
+	    			TabbedPanelItem:
+	    				text: 'Grading Report'
+	    				GradingReportScreen:  								    								    					
+	    			TabbedPanelItem:
+	    				text: 'Student Rating'			    								    							    								    					    					    					    					    											    						    					    						    						    						    						
 		  																	
 	StackLayout:
 		width: root.width
@@ -129,23 +155,26 @@
 		cols: 1
 		size_hint: 0.3, 1
 		top: root.top - 62
-		right: root.right + 50							
+		right: root.right + 49
+		spacing: 3								
 		ToolBoxButton:
+			group: 'menubtn'
+			state: 'down'
 			on_press: app.SwitchToDash()
 			ToolBoxStack:
 				IconImage: 
 					source: 'data/icons/home.png'						
-		ToolBoxButton:
+		OpenSaveButton:
 			on_press: app.ShowOpenFileDialog()
 			ToolBoxStack:
 				IconImage: 
 					source: 'data/icons/folder.png'
-		ToolBoxButton:
+		OpenSaveButton:
 			on_release: app.UpdateRecord()
 			ToolBoxStack:
 				IconImage:
 					source: 'data/icons/save.png'												
-		ToolBoxButton:
+		OpenSaveButton:
 			on_release: app.ShowSaveFileDialog()
 			ToolBoxStack:
 				IconImage:
@@ -156,6 +185,7 @@
 				IconImage:
 					source: 'data/icons/pdf.png'
 		ToolBoxButton:
+			group: 'menubtn'
 			on_release: app.ShowHelp()
 			ToolBoxStack:
 				IconImage:
@@ -165,18 +195,16 @@
 		size_hint: 0.3, 1
 		top: root.top - 62
 		padding: 3
+		spacing: 3
 		BoxLayout
 		ToolBoxButton:
-			on_release: app.SwitchToEditor()
+			group: 'menubtn'
+			on_release: app.SwitchToStudList()
 			ToolBoxStack:
 				IconImage:
-					source: 'data/icons/edit.png'	
+					source: 'data/icons/edit.png'
 		ToolBoxButton:
-			on_release:
-			ToolBoxStack:
-				IconImage:
-					source: 'data/icons/delete.png'
-		ToolBoxButton:
+			group: 'menubtn'
 			on_release:
 			ToolBoxStack:
 				IconImage: 
@@ -284,3 +312,196 @@
 				Button:
 					text: 'Cancel'
 					on_release: root.cancel()
+
+<GradingReportScreen>:
+	GridLayout:
+		size: root.size
+        pos: root.pos
+		cols: 1
+		padding: 10
+		BoxLayout:
+			size_hint_y: None
+			height: '24dp'
+			ToggleButton:
+				background_normal: 'data/images/bg01.png'
+				text: 'First Grading'
+				on_release: GradingPeriodScreenManager.current = '1stgrading'
+				group: 'grading'
+				state: 'down'
+			ToggleButton:
+				background_normal: 'data/images/bg01.png'
+				text: 'Second Grading'
+				on_release: GradingPeriodScreenManager.current = '2ndgrading'
+				group: 'grading'
+			ToggleButton:
+				background_normal: 'data/images/bg01.png'
+				text: 'Third Grading'
+				on_release: GradingPeriodScreenManager.current = '3rdgrading'
+				group: 'grading'
+			ToggleButton:
+				background_normal: 'data/images/bg01.png'
+				text: 'Fourth Grading'
+				on_release: GradingPeriodScreenManager.current = '4thgrading'
+				group: 'grading'	    							    							    					
+		ScreenManager:
+			id: GradingPeriodScreenManager
+			Screen:
+				name: '1stgrading'
+				StackLayout:
+					padding: 30
+					spacing: 10
+					BoxLayout:
+						size_hint: None, None
+						Label:
+							size_hint: None, None
+							height: '32dp'						
+							text: 'Filipino'
+							text_size: len(self.text)*10, None
+							width: self.text_size[0]+10
+							halign: 'right'
+						TextInput:
+							size_hint: None, None
+							height: '32dp'
+							text: '90'
+							width: '30dp'
+					BoxLayout:
+						size_hint: None, None			
+						Label:
+							size_hint: None, None
+							height: '32dp'
+							text: 'Mathematics'
+							text_size: len(self.text)*10, None
+							width: self.text_size[0]+10
+							halign: 'right'							
+						TextInput:
+							size_hint: None, None
+							height: '32dp'
+							text: '90'
+							width: '30dp'
+					BoxLayout:
+						size_hint: None, None			
+						Label:
+							size_hint: None, None
+							height: '32dp'
+							text: 'Science'
+							text_size: len(self.text)*10, None
+							width: self.text_size[0]+10	
+							halign: 'right'						
+						TextInput:
+							size_hint: None, None
+							height: '32dp'
+							text: '90'
+							width: '30dp'																																
+			Screen:
+				name: '2ndgrading'
+				Label:
+					text: '2'
+			Screen:
+				name: '3rdgrading'
+				Label:
+					text: '3'
+			Screen:
+				name: '4thgrading'
+				Label:
+					text: '4'	
+
+<StudBasicDetails>:
+	GridLayout:
+		size: root.size
+        pos: root.pos	
+		cols: 1
+		spacing: 10
+		padding: 10		    			
+		GridLayout:
+			cols: 2
+			size_hint: 1, None
+			spacing: 10
+			height: '32dp'
+			Label:
+				text: 'School Name'
+				size_hint: None, 1
+				width: 120				    				
+			TextInput:
+				text: 'Sta. Barabara National Comprehensive High School'
+		GridLayout:
+			cols: 2
+			size_hint: 1, None
+			height: '32dp'
+			spacing: 0
+			Label:
+				text: 'Student LRN'
+				size_hint: None, 1
+				width: 120
+			TextInput:
+				text: '0'
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			BoxLayout:
+				size_hint: 1, None
+				height: '32dp'
+				spacing: 10
+    			Label:
+    				text: 'Student Name'
+    				size_hint: None, 1
+    				width: 120
+    			TextInput:
+    				multiline: False
+    				size_hint: 1, None
+    				height: '32dp'
+    				text: 'Juan De la Cruz'
+			BoxLayout:
+				size_hint: None, None
+				height: '32dp'
+    			Label:
+    				text: 'Age'
+    				size_hint: 0.5, 1
+    			TextInput:
+    				text: '0'
+
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			spacing: 10
+			Label:
+				text: 'Gender'
+				size_hint: None, 1
+				width: 120			    					
+			Spinner:
+				size_hint: 0.4, 1
+				text: '...'
+				values: '...','Male', 'Female'
+			Label:
+				size_hint: None, 1
+				text: 'Year and Section'
+				size_hint: None, 1
+				width: 120
+			TextInput:
+				text: '...'
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint_x: None
+				width: 120	
+				text: 'Curriculum'
+			TextInput:
+				text: 'K-12 Strengthened Technical Vocational Education Program-CBC'
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint_x: None
+				width: 120	
+				text: 'Adviser'
+			TextInput:
+				text: ''
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint_x: None
+				width: 120	
+				text: 'Principal'
+			TextInput:
+				text: ''			 
