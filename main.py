@@ -13,6 +13,7 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
+from kivy.uix.scrollview import ScrollView
 
 
 import os
@@ -37,6 +38,13 @@ class StudBasicDetails(Widget):
 	
 class GradingReportScreen(Widget):
 	pass
+
+class FirstGradingWidget(Widget):
+	pass
+
+class SecondGradingWidget(Widget):
+	pass
+
 
 class ReportCardApp(App):
 
@@ -71,7 +79,7 @@ class ReportCardApp(App):
 
 	def SwitchToStudList(self):
 		msm = self.root.ids.MainScreenManager
-		wt = self.root.ids.WidgetTitle			
+		wt = self.root.ids.WidgetTitle							
 		msm.current = 'studlist'
 		wt.text = '[font=data/fonts/OpenSans-Light.ttf]Select a Student[/font]'
 		msm.transition = SlideTransition()

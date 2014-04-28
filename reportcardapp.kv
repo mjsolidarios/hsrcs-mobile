@@ -39,12 +39,17 @@
 	height: 40
 	width: self.text_size[0]+10
 
+<GradingLine@BoxLayout>:
+	size_hint: None, None
+	height: 3
+
 <ReportCardForm>:
-	canvas.before:
+	canvas.before:	
         Color:
             rgba: get_color_from_hex('#24252A')
         Rectangle:
             size: self.size
+            source: 'data/images/bg03.jpg'
             pos: self.pos
 	FloatLayout:
 		size: root.width, root.height
@@ -347,55 +352,11 @@
 			id: GradingPeriodScreenManager
 			Screen:
 				name: '1stgrading'
-				StackLayout:
-					padding: 30
-					spacing: 10
-					BoxLayout:
-						size_hint: None, None
-						Label:
-							size_hint: None, None
-							height: '32dp'						
-							text: 'Filipino'
-							text_size: len(self.text)*10, None
-							width: self.text_size[0]+10
-							halign: 'right'
-						TextInput:
-							size_hint: None, None
-							height: '32dp'
-							text: '90'
-							width: '30dp'
-					BoxLayout:
-						size_hint: None, None			
-						Label:
-							size_hint: None, None
-							height: '32dp'
-							text: 'Mathematics'
-							text_size: len(self.text)*10, None
-							width: self.text_size[0]+10
-							halign: 'right'							
-						TextInput:
-							size_hint: None, None
-							height: '32dp'
-							text: '90'
-							width: '30dp'
-					BoxLayout:
-						size_hint: None, None			
-						Label:
-							size_hint: None, None
-							height: '32dp'
-							text: 'Science'
-							text_size: len(self.text)*10, None
-							width: self.text_size[0]+10	
-							halign: 'right'						
-						TextInput:
-							size_hint: None, None
-							height: '32dp'
-							text: '90'
-							width: '30dp'																																
+				FirstGradingWidget:
+																																														
 			Screen:
 				name: '2ndgrading'
-				Label:
-					text: '2'
+				SecondGradingWidget:
 			Screen:
 				name: '3rdgrading'
 				Label:
@@ -431,7 +392,7 @@
 			Label:
 				text: 'Student LRN'
 				size_hint: None, 1
-				width: 120
+				width: 130
 			TextInput:
 				text: '0'
 		BoxLayout:
@@ -483,7 +444,7 @@
 			height: '32dp'
 			Label:
 				size_hint_x: None
-				width: 120	
+				width: 130	
 				text: 'Curriculum'
 			TextInput:
 				text: 'K-12 Strengthened Technical Vocational Education Program-CBC'
@@ -492,7 +453,7 @@
 			height: '32dp'
 			Label:
 				size_hint_x: None
-				width: 120	
+				width: 130	
 				text: 'Adviser'
 			TextInput:
 				text: ''
@@ -501,7 +462,352 @@
 			height: '32dp'
 			Label:
 				size_hint_x: None
-				width: 120	
+				width: 130
 				text: 'Principal'
 			TextInput:
 				text: ''			 
+
+<FirstGradingWidget>:
+	StackLayout:
+		top: self.parent.top
+		padding: [0,20,0,0]
+		spacing: 10
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Filipino'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'English'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Mathematics'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Science'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1			
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'					
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Araling Panlipunan'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'	
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Technical Vocational Education'
+				width: 273
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1								
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Music'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Arts'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Physical Education'
+				width: 270
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1							
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Edukasyon sa Pagpapakatao'
+				width: 303
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Internet & Computer Fundamentals'
+				width: 270
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1						
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'				
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Technical Drawing'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+<SecondGradingWidget>:
+	StackLayout:
+		top: self.parent.top
+		padding: [0,20,0,0]
+		spacing: 10
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Filipino'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'English'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Mathematics'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Science'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1			
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'					
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Araling Panlipunan'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'	
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Technical Vocational Education'
+				width: 273
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1								
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Music'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Arts'
+				width: 120
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Physical Education'
+				width: 270
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1							
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Edukasyon sa Pagpapakatao'
+				width: 303
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Internet & Computer Fundamentals'
+				width: 270
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'
+		GradingLine:
+			canvas:
+				Color:
+					rgba: get_color_from_hex('#5F5F5F')
+				Rectangle:
+					rgba: 
+					pos: 0,self.center_y
+					size: root.width, 1						
+		BoxLayout:
+			size_hint: 1, None
+			height: '32dp'				
+			Label:
+				size_hint: None, None
+				height: '32dp'						
+				text: 'Technical Drawing'
+				width: 150
+			TextInput:
+				size_hint: None, None
+				height: '32dp'
+				text: '90'
+				width: '32dp'				
